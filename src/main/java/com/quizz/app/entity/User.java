@@ -4,6 +4,8 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -23,11 +25,17 @@ public class User implements Serializable {
     @Column(name = "user_id", nullable = false)
     private Integer userId;
 
+    @NotBlank(message = "User name must not empty")
     @Column(name = "user_name", length = 50)
     private String userName;
 
+    @NotBlank(message = "Password must not empty")
     @Column(name = "password", length = 50)
     private String password;
+
+    @Email(message = "Please double check !! Email form is not correct")
+    @Column(name = "email")
+    private String email;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
