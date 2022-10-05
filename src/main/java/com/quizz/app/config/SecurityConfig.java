@@ -1,6 +1,6 @@
 package com.quizz.app.config;
 
-import com.quizz.app.service.AuthenticationService;
+import com.quizz.app.service.impl.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class SecurityConfig{
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                    .antMatchers("/signup","/signup/**","/css/**","/js/**","/login/**").permitAll()
+                    .antMatchers("/signup","/signup/**","/css/**","/js/**","/login/**","/static/**","/img/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()

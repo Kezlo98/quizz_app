@@ -1,4 +1,4 @@
-package com.quizz.app.service;
+package com.quizz.app.service.impl;
 
 import com.quizz.app.entity.User;
 import com.quizz.app.repository.UserRepository;

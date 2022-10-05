@@ -13,7 +13,7 @@
     <form id="loginform" class="form-vertical" action="#" th:action="@{/login}" method="POST">
         <div class="control-group normal_text">
             <h3>
-                <img src="../static/img/logo.png" alt="Logo" />
+                <img src="../static/img/logo.png" th:src="@{img/login-logo.png}" alt="Logo" />
             </h3>
         </div>
         <div id="reset-success-msg" th:if="${resetSuccess}" class="alert alert-dark">
@@ -45,12 +45,12 @@
                         <i class="icon-lock"></i>
                     </span>
                     <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Enter Password" maxlength="20" required>
+                    <span class="middle" style="margin-top: 5px"><a href="#" class="flip-link btn btn-inverse" id="to-recover">Lost password?</a></span>
                 </div>
             </div>
-            <span class="pull-left"><a href="#" class="flip-link btn btn-inverse" id="to-recover">Lost password?</a></span>
         </div>
         <div class="form-actions">
-            <span class="pull-left"><a href="/signup" class="flip-link btn btn-inverse">Sign Up</a></span>
+            <span class="pull-left"><a href="/signup" class="flip-link btn btn-success">Sign Up</a></span>
             <span class="pull-right">
                 <input type="submit" class="btn btn-success" value="Login" />
             </span>

@@ -14,24 +14,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/login")
 public class LoginController {
 
-    private IUserService userService;
-
     @GetMapping
     public String getLoginPage(){
         return "login";
     }
 
     @GetMapping("/successfulSignup")
-    public String getLoginPageAfterSignupSuccess(Model model){
+    public String getLoginPageAfterSignupSuccess(RedirectAttributes redirectAttributes){
 
-        model.addAttribute("signupSuccess", true);
+        redirectAttributes.addFlashAttribute("signupSuccess", true);
 
-        return "/login";
+        return "redirect:/login";
     }
 
     @GetMapping("/successfulResetPassword")
-    public String getLoginPageAfterResetPasswordSuccess(Model model, RedirectAttributes redirectAttributes){
-        
+    public String getLoginPageAfterResetPasswordSuccess(RedirectAttributes redirectAttributes){
+
         redirectAttributes.addFlashAttribute("resetSuccess", true);
 
         return "redirect:/login";
