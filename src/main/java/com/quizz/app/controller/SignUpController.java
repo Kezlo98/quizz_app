@@ -1,5 +1,6 @@
 package com.quizz.app.controller;
 
+import com.quizz.app.dto.PasswordUpdateRequest;
 import com.quizz.app.dto.UserDto;
 import com.quizz.app.entity.User;
 import com.quizz.app.service.IUserService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("api/signup")
+@RequestMapping("/signup")
 public class SignUpController {
 
     @Autowired
@@ -43,7 +44,7 @@ public class SignUpController {
         }
 
         if (signupError == null) {
-            return "redirect:/api/login/successfulSignup";
+            return "redirect:/login/successfulSignup";
         }
 
         model.addAttribute("signupError", signupError);
@@ -51,17 +52,13 @@ public class SignUpController {
         return "signup";
     }
 
-    @GetMapping("/password/reset")
-    public String getResetPasswordForm(@ModelAttribute String recoverEmail, Model model){
-        model.addAttribute("isResetPassword", true);
-        model.addAttribute("recoverEmail",recoverEmail);
-        return "signup";
-    }
-
-    @PostMapping("/password/reset")
-    public String resetPassword(@ModelAttribute String recoverEmail, @ModelAttribute String resetPassword, @ModelAttribute String confirmResetPassword, Model model){
+    @PostMapping("/password")
+    public String updatePassword(@ModelAttribute PasswordUpdateRequest passwordUpdateRequest, Model model){
 
         String signupError = null;
+        String resetPassword = passwordUpdateRequest.getResetPassword();
+        String confirmResetPassword = passwordUpdateRequest.getConfirmResetPassword();
+        String recoverEmail = passwordUpdateRequest.getRecoverEmail();
 
         if(resetPassword == null || !resetPassword.equalsIgnoreCase(confirmResetPassword)){
             signupError = "The password and confirm password must match";
@@ -76,7 +73,7 @@ public class SignUpController {
 
         model.addAttribute("isResetPassword", false);
         if (signupError == null) {
-            return "redirect:api/login/successfulResetPassword";
+            return "redirect:/login/successfulResetPassword";
         } else {
             model.addAttribute("signupError", signupError);
         }

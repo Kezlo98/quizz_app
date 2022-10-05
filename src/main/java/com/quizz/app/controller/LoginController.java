@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/login")
@@ -20,30 +21,19 @@ public class LoginController {
         return "login";
     }
 
-//    @PostMapping
-//    public String login(@ModelAttribute UserDto userDto, Model model){
-//
-//        if(userService.isLoginSuccess(userDto)){
-//            return "redirect:/home";
-//        }
-//
-//        model.addAttribute("loginError",true);
-//        return "login";
-//    }
-
     @GetMapping("/successfulSignup")
     public String getLoginPageAfterSignupSuccess(Model model){
 
         model.addAttribute("signupSuccess", true);
 
-        return "login";
+        return "/login";
     }
 
     @GetMapping("/successfulResetPassword")
-    public String getLoginPageAfterResetPasswordSuccess(Model model){
+    public String getLoginPageAfterResetPasswordSuccess(Model model, RedirectAttributes redirectAttributes){
+        
+        redirectAttributes.addFlashAttribute("resetSuccess", true);
 
-        model.addAttribute("resetSuccess", true);
-
-        return "login";
+        return "redirect:/login";
     }
 }

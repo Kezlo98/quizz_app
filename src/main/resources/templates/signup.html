@@ -11,35 +11,7 @@
 </head>
 <body>
 <div id="signupbox">
-    <form  th:if="${isResetPassword}" id="resetPassword" class="form-vertical" action="#" th:action="@{/signup/password/reset}" method="POST">
-        <div class="control-group">
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on"><i class="icon-lock"></i></span>
-                    <input type="password" name="resetPassword" class="form-control" id="inputResetPassword" placeholder="Enter New Password" maxlength="20" required>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on"><i class="icon-lock"></i></span>
-                    <input type="password" name="confirmResetPassword" class="form-control" id="inputResetConfirmPassword" placeholder="Confirm New Password" maxlength="20" required>
-                </div>
-            </div>
-        </div>
-        <div class="form-actions">
-            <span class="pull-right">
-                <a th:href="@{/login}" class="flip-link btn btn-inverse" id="cancel">
-                    &laquo; Cancel
-                </a>
-            </span>
-            <span class="pull-left">
-                <input type="submit" class="btn btn-success" value="Confirm"/>
-            </span>
-        </div>
-    </form>
-    <form th:if="!${isResetPassword}" id="signupform" class="form-vertical" action="#" th:action="@{/signup}" method="POST" >
+    <form id="signupform" class="form-vertical" action="#" th:action="@{/signup}" method="POST" >
         <div class="control-group normal_text"><h3>Sign Up</h3></div>
         <div th:if="${signupError}" class="alert alert-danger">
             <span th:text="${signupError}">Signup Error</span>
