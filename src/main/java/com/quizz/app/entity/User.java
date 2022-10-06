@@ -29,6 +29,18 @@ public class User implements Serializable {
     @Column(name = "user_name", length = 50)
     private String username;
 
+    @Column(name = "first_name", length = 50)
+    private String firstName;
+
+    @Column(name = "last_name", length = 50)
+    private String lastName;
+
+    @Column(name = "university_name", length = 50)
+    private String universityName;
+
+    @Column(name = "description", length = 255)
+    private String description;
+
     @NotBlank(message = "Password must not empty")
     @Column(name = "password", length = 50)
     private String password;

@@ -1,6 +1,6 @@
 package com.quizz.app.controller;
 
-import com.quizz.app.dto.PasswordUpdateRequest;
+import com.quizz.app.dto.ResetPasswordRequest;
 import com.quizz.app.dto.UserDto;
 import com.quizz.app.entity.User;
 import com.quizz.app.service.IUserService;
@@ -53,12 +53,12 @@ public class SignUpController {
     }
 
     @PostMapping("/password")
-    public String updatePassword(@ModelAttribute PasswordUpdateRequest passwordUpdateRequest, Model model){
+    public String updatePassword(@ModelAttribute ResetPasswordRequest resetPasswordRequest, Model model){
 
         String signupError = null;
-        String resetPassword = passwordUpdateRequest.getResetPassword();
-        String confirmResetPassword = passwordUpdateRequest.getConfirmResetPassword();
-        String recoverEmail = passwordUpdateRequest.getRecoverEmail();
+        String resetPassword = resetPasswordRequest.getResetPassword();
+        String confirmResetPassword = resetPasswordRequest.getConfirmResetPassword();
+        String recoverEmail = resetPasswordRequest.getRecoverEmail();
 
         if(resetPassword == null || !resetPassword.equalsIgnoreCase(confirmResetPassword)){
             signupError = "The password and confirm password must match";
