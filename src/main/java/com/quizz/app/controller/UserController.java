@@ -3,7 +3,6 @@ package com.quizz.app.controller;
 import com.quizz.app.dto.PasswordUpdateRequest;
 import com.quizz.app.dto.UserDto;
 import com.quizz.app.entity.User;
-import com.quizz.app.mapper.UserMapper;
 import com.quizz.app.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -28,8 +27,7 @@ public class UserController {
         String username = authentication.getName();
         User user = userService.getUserWithUserName(username);
         if(user != null){
-            setUserToModel(model, UserMapper.INSTANCE.toDto(user));
-//            model.addAttribute("user",user);
+            model.addAttribute("user",user);
         }
 
         return "userprofile";
@@ -42,9 +40,9 @@ public class UserController {
 
         User user = userService.updateUser(userDto);
         if(user != null){
-//            setUserToModel(model, UserMapper.INSTANCE.toDto(user));
             model.addAttribute("user",user);
         }
+        model.addAttribute("updateProfileSuccess", true);
 
         return "userprofile";
     }
@@ -56,7 +54,7 @@ public class UserController {
             String notification = userService.changePassword(passwordUpdateRequest, authentication.getName());
             redirectAttributes.addFlashAttribute("passwordChangeNotification",notification);
         }else{
-            redirectAttributes.addFlashAttribute("passwordChangeNotification", error);
+            redirectAttributes.addFlashAttribute("passwordChangeError", error);
         }
 
         return "redirect:/user";
@@ -82,14 +80,5 @@ public class UserController {
 
 
         return "";
-    }
-
-    private void setUserToModel (Model model, UserDto userDto){
-        model.addAttribute("firstName",userDto.getFirstName());
-        model.addAttribute("lastName",userDto.getLastName());
-        model.addAttribute("universityName",userDto.getUniversityName());
-        model.addAttribute("username",userDto.getUsername());
-        model.addAttribute("description",userDto.getDescription());
-        model.addAttribute("email",userDto.getEmail());
     }
 }

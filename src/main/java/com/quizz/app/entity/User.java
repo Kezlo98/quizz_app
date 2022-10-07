@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -38,20 +39,20 @@ public class User implements Serializable {
     @Column(name = "university_name", length = 50)
     private String universityName;
 
-    @Column(name = "description", length = 255)
+    @Column(name = "user_description", length = 255)
     private String description;
 
     @NotBlank(message = "Password must not empty")
-    @Column(name = "password", length = 50)
+    @Column(name = "user_password", length = 50)
     private String password;
 
     @Email(message = "Please double check !! Email form is not correct")
     @Column(name = "email")
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private RoleEnum role;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private Collection<Role> roles;
 
     @Override
     public boolean equals(Object o) {

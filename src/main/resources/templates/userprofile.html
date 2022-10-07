@@ -89,28 +89,29 @@
                     </div>
                     <div class="widget-content nopadding">
                         <form action="#" class="form-horizontal" th:action="@{/user}" method="POST">
+                            <div id="update-profile-success" th:if="${updateProfileSuccess}" class="alert alert-dark">Profile Update Successfully</div>
                             <div class="control-group">
                                 <label class="control-label">First Name :</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="First name" name="firstName" th:value="${firstName}" />
+                                    <input type="text" class="span11" placeholder="First name" name="firstName" th:value="${user.getFirstName()}" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Last Name :</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="Last name" name="lastName" th:value="${lastName}" />
+                                    <input type="text" class="span11" placeholder="Last name" name="lastName" th:value="${user.getLastName()}" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">University info :</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="University name" name="universityName" th:value="${universityName}" />
+                                    <input type="text" class="span11" placeholder="University name" name="universityName" th:value="${user.getUniversityName()}" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Description field:</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" name="description" th:value="${description}" />
+                                    <input type="text" class="span11" name="description" th:value="${user.getDescription()}" />
                                     <span class="help-block">Description field</span> </div>
                             </div>
                             <div class="form-actions">
@@ -126,23 +127,25 @@
                         <h5>Password Change</h5>
                     </div>
                     <div class="widget-content nopadding">
+                        <div id="error-change-password" th:if="${passwordChangeError}" class="alert alert-danger" th:utext="${passwordChangeError}"></div>
+                        <div id="notification-change-password" th:if="${passwordChangeNotification}" class="alert alert-dark" th:utext="${passwordChangeNotification}"></div>
                         <form action="#" class="form-horizontal" th:action="@{/user/password}" method="POST">
                             <div class="control-group">
                                 <label class="control-label">Current Password :</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="Current Password" name="currentPassword" />
+                                    <input type="password" class="span11" placeholder="Current Password" name="currentPassword" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">New Password :</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="New Password" name="newPassword"/>
+                                    <input type="password" class="span11" placeholder="New Password" name="newPassword"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">University info :</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" placeholder="Confirm New Password" name="confirmNewPassword"/>
+                                    <input type="password" class="span11" placeholder="Confirm New Password" name="confirmNewPassword"/>
                                 </div>
                             </div>
                             <div class="form-actions">

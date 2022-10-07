@@ -2,6 +2,7 @@ package com.quizz.app.service.impl;
 
 import com.quizz.app.dto.PasswordUpdateRequest;
 import com.quizz.app.dto.UserDto;
+import com.quizz.app.entity.Role;
 import com.quizz.app.entity.RoleEnum;
 import com.quizz.app.entity.User;
 import com.quizz.app.mapper.UserMapper;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -53,7 +55,10 @@ public class UserService implements IUserService {
     public User createUser(UserDto userDto) {
 
         User user = UserMapper.INSTANCE.toEntity(userDto);
-        user.setRole(RoleEnum.USER);
+        Role role = new Role();
+        role.setRole(RoleEnum.USER);
+        role.setUser(user);
+        user.setRoles(Collections.singleton(role));
         return userRepository.save(user);
     }
 
