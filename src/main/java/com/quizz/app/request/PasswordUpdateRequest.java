@@ -1,4 +1,4 @@
-package com.quizz.app.dto;
+package com.quizz.app.request;
 
 import lombok.Data;
 

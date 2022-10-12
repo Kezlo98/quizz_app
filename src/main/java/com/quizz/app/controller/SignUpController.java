@@ -1,6 +1,6 @@
 package com.quizz.app.controller;
 
-import com.quizz.app.dto.ResetPasswordRequest;
+import com.quizz.app.request.ResetPasswordRequest;
 import com.quizz.app.dto.UserDto;
 import com.quizz.app.entity.User;
 import com.quizz.app.service.IUserService;

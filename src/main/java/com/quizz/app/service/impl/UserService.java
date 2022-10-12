@@ -1,6 +1,6 @@
 package com.quizz.app.service.impl;
 
-import com.quizz.app.dto.PasswordUpdateRequest;
+import com.quizz.app.request.PasswordUpdateRequest;
 import com.quizz.app.dto.UserDto;
 import com.quizz.app.entity.Role;
 import com.quizz.app.entity.RoleEnum;
@@ -8,7 +8,6 @@ import com.quizz.app.entity.User;
 import com.quizz.app.mapper.UserMapper;
 import com.quizz.app.repository.UserRepository;
 import com.quizz.app.service.IUserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

@@ -1,6 +1,6 @@
 package com.quizz.app.service;
 
-import com.quizz.app.dto.PasswordUpdateRequest;
+import com.quizz.app.request.PasswordUpdateRequest;
 import com.quizz.app.dto.UserDto;
 import com.quizz.app.entity.User;
 
