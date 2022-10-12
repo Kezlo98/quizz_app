@@ -12,6 +12,5 @@ spring:
     user:
       name: user
       password: 1234
-
   liquibase:
     change-log: database/changelog/changelog-master.xml
