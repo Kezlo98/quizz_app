@@ -13,34 +13,35 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig{
+public class SecurityConfig {
 
-    @Autowired
-    private AuthenticationService authenticationService;
+  @Autowired
+  private AuthenticationService authenticationService;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                .authorizeRequests()
-                    .antMatchers("/signup","/signup/**","/css/**","/js/**","/login/**","/static/**","/img/**").permitAll()
-                    .anyRequest().authenticated()
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .defaultSuccessUrl("/", true)
-                .and()
-                    .logout()
-                    .logoutSuccessUrl("/login")
-                .and()
-                    .headers()
-                    .frameOptions()
-                    .disable()
-                .and()
-                .authenticationManager(new ProviderManager(authenticationService))
-        ;
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http.csrf()
+        .disable()
+        .authorizeRequests()
+        .antMatchers("/signup", "/signup/**", "/css/**", "/js/**", "/login/**", "/static/**",
+            "/img/**").permitAll()
+        .anyRequest().authenticated()
+        .and()
+        .formLogin()
+        .loginPage("/login")
+        .permitAll()
+        .defaultSuccessUrl("/", true)
+        .and()
+        .logout()
+        .logoutSuccessUrl("/login")
+        .and()
+        .headers()
+        .frameOptions()
+        .disable()
+        .and()
+        .authenticationManager(new ProviderManager(authenticationService))
+    ;
 
-        return http.build();
-    }
+    return http.build();
+  }
 }

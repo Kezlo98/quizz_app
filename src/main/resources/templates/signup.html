@@ -2,65 +2,70 @@
 <html lang="en">
 
 <head>
-    <title>Maruti Admin</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/signup.css}"/>
+  <title>Maruti Admin</title>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+  <link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}"/>
+  <link rel="stylesheet" th:href="@{/css/signup.css}"/>
 </head>
 <body>
 <div id="signupbox">
-    <form id="signupform" class="form-vertical" action="#" th:action="@{/signup}" method="POST" >
-        <div class="control-group normal_text"><h3>Sign Up</h3></div>
-        <div th:if="${signupError}" class="alert alert-danger">
-            <span th:text="${signupError}">Signup Error</span>
+  <form action="#" class="form-vertical" id="signupform" method="POST" th:action="@{/signup}">
+    <div class="control-group normal_text"><h3>Sign Up</h3></div>
+    <div class="alert alert-danger" th:if="${signupError}">
+      <span th:text="${signupError}">Signup Error</span>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <div class="main_input_box">
+          <span class="add-on"><i class="icon-user"></i></span>
+          <input class="form-control" id="inputUsername" maxlength="20" name="username"
+                 placeholder="Enter Username" required type="input">
         </div>
-        <div class="control-group">
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on"><i class="icon-user"></i></span>
-                    <input type="input" name="username" class="form-control" id="inputUsername" placeholder="Enter Username" maxlength="20" required>
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <div class="main_input_box">
+          <span class="add-on"><i class="icon-lock"></i></span>
+          <input class="form-control" id="inputPassword" maxlength="20" name="password"
+                 placeholder="Enter Password" required type="password">
         </div>
-        <div class="control-group">
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on"><i class="icon-lock"></i></span>
-                    <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Enter Password" maxlength="20" required>
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <div class="main_input_box">
+          <span class="add-on"><i class="icon-lock"></i></span>
+          <input class="form-control" id="inputConfirmPassword" maxlength="20"
+                 name="confirmPassword" placeholder="Enter Confirm Password" required
+                 type="password">
         </div>
-        <div class="control-group">
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on"><i class="icon-lock"></i></span>
-                    <input type="password" name="confirmPassword" class="form-control" id="inputConfirmPassword" placeholder="Enter Confirm Password" maxlength="20" required>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <div class="main_input_box">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <div class="main_input_box">
                     <span class="add-on">
                         <i class="icon-lock"></i>
                     </span>
-                    <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Enter Email" maxlength="20" required>
-                </div>
-            </div>
+          <input class="form-control" id="inputEmail" maxlength="20" name="email"
+                 placeholder="Enter Email" required type="email">
         </div>
-        <div class="form-actions">
+      </div>
+    </div>
+    <div class="form-actions">
             <span class="pull-left">
-                <a th:href="@{/login}" class="flip-link btn btn-inverse" id="to-login">
+                <a class="flip-link btn btn-inverse" id="to-login" th:href="@{/login}">
                     &laquo; Back to login
                 </a>
             </span>
-            <span class="pull-right">
-                <input type="submit" class="btn btn-success" value="SignUp"/>
+      <span class="pull-right">
+                <input class="btn btn-success" type="submit" value="SignUp"/>
             </span>
-        </div>
-    </form>
+    </div>
+  </form>
 </div>
 
 </body>
