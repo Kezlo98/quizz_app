@@ -1,101 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Maruti Admin</title>
-  <meta charset="UTF-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-  <link th:href="@{/css/bootstrap-responsive.min.css}" rel="stylesheet"/>
-  <link th:href="@{/css/colorpicker.css}" rel="stylesheet"/>
-  <link th:href="@{/css/datepicker.css}" rel="stylesheet"/>
-  <link th:href="@{/css/uniform.css}" rel="stylesheet"/>
-  <link th:href="@{/css/select2.css}" rel="stylesheet"/>
-  <link th:href="@{/css/maruti-style.css}" rel="stylesheet"/>
-  <link class="skin-color" th:href="@{/css/maruti-media.css}" rel="stylesheet"/>
-</head>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragment :: Lib_Fragment"></head>
 <body>
 
-<!--Header-part-->
-<div id="header">
-  <h1><a href="/home">Maruti Admin</a></h1>
-</div>
-<!--close-Header-part-->
-
-<!--top-Header-messaages-->
-<div class="btn-group rightzero"><a class="top_message tip-left" title="Manage Files"><i
-    class="icon-file"></i></a> <a
-    class="top_message tip-bottom" title="Manage Users"><i class="icon-user"></i></a> <a
-    class="top_message tip-bottom" title="Manage Comments"><i class="icon-comment"></i><span
-    class="label label-important">5</span></a> <a class="top_message tip-bottom"
-                                                  title="Manage Orders"><i
-    class="icon-shopping-cart"></i></a></div>
-<!--close-top-Header-messaages-->
-
-<!--top-Header-menu-->
-<div class="navbar navbar-inverse" id="user-nav">
-  <ul class="nav">
-    <li class=""><a href="#" title=""><i class="icon icon-user"></i> <span
-        class="text">Profile</span></a></li>
-    <li class=" dropdown" id="menu-messages"><a class="dropdown-toggle" data-target="#menu-messages"
-                                                data-toggle="dropdown"
-                                                href="#"><i
-        class="icon icon-envelope"></i> <span
-        class="text">Messages</span> <span class="label label-important">5</span> <b
-        class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a class="sAdd" href="#" title="">new message</a></li>
-        <li><a class="sInbox" href="#" title="">inbox</a></li>
-        <li><a class="sOutbox" href="#" title="">outbox</a></li>
-        <li><a class="sTrash" href="#" title="">trash</a></li>
-      </ul>
-    </li>
-    <li class=""><a href="#" title=""><i class="icon icon-cog"></i> <span
-        class="text">Settings</span></a></li>
-    <li class=""><a href="login.html" title=""><i class="icon icon-share-alt"></i> <span
-        class="text">Logout</span></a>
-    </li>
-  </ul>
-</div>
-<!--close-top-Header-menu-->
-<!--left-menu-stats-sidebar-->
-<div id="sidebar">
-  <div id="search">
-    <input placeholder="Search here..." type="text"/>
-    <button class="tip-bottom" title="Search" type="submit"><i class="icon-search icon-white"></i>
-    </button>
-  </div>
-  <a class="visible-phone" href="#"><i class="icon icon-th-list"></i> Common Elements</a>
-  <ul>
-    <li class="active"><a href="index.html"><i class="icon icon-home"></i>
-      <span>Dashboard</span></a></li>
-    <li><a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a>
-    </li>
-    <li><a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a></li>
-    <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
-    <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
-    <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span
-        class="label label-important">3</span></a>
-      <ul>
-        <li><a href="new-subject.html">New Subject</a></li>
-        <li><a href="form-validation.html">Form with Validation</a></li>
-        <li><a href="form-wizard.html">Form with Wizard</a></li>
-      </ul>
-    </li>
-    <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a>
-    </li>
-    <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
-    <li class="submenu"><a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span
-        class="label label-important">4</span></a>
-      <ul>
-        <li><a href="index2.html">Dashboard2</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="calendar.html">Calendar</a></li>
-        <li><a href="chat.html">Chat option</a></li>
-      </ul>
-    </li>
-  </ul>
-</div>
-<!--close-left-menu-stats-sidebar-->
+<div th:replace="fragment :: header"></div>
+<div th:replace="fragment :: menu"></div>
+<div th:replace="fragment :: sidebar"></div>
 
 <div id="content">
   <div id="content-header">
@@ -106,108 +17,68 @@
     </div>
     <h1>Subject Details</h1>
   </div>
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="span6">
-        <div class="widget-box">
-          <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
-            <h5>New Subject</h5>
-          </div>
-          <div class="widget-content nopadding">
-            <form action="#" class="form-horizontal" method="POST" th:action="@{/subject}">
-              <div class="alert alert-dark" id="success-msg" th:if="${addNewFail}">
-                You successfully signed up! Please log in to find more wonderful thing.
-              </div>
-              <div class="alert alert-danger" id="error-login" th:if="${addNewSuccess}">
-                Invalid username or password
-              </div>
-              <div class="control-group">
-                <label class="control-label">Subject Name :</label>
-                <div class="controls">
-                  <input class="span11" name="subjectName" placeholder="Subject Name" type="text"/>
-                </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">Category</label>
-                <div class="controls">
-                  <select name="category">
-                    <option>Combo Box</option>
-                    <option>Second option</option>
-                    <option>Third option</option>
-                    <option>Fourth option</option>
-                    <option>Fifth option</option>
-                    <option>Sixth option</option>
-                    <option>Seventh option</option>
-                    <option>Eighth option</option>
-                  </select>
-                </div>
-              </div>
-              <div class="control-group">
-                <div class="controls">
-                  <div>
-                    <input name="featured" type="checkbox"/>
-                    Featured Subject
+  <div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="widget-box">
+            <div class="widget-title"><span class="icon"> <i
+                class="icon-align-justify"></i> </span>
+              <h5>New Subject</h5>
+            </div>
+            <div class="widget-content nopadding">
+              <form action="#" class="form-horizontal" method="POST" th:action="@{/subject}">
+                <div class="alert alert-danger" id="error-login" th:if="${addNewFail}"
+                     th:uText="${addNewFail}"></div>
+                <div class="alert alert-dark" id="success-msg" th:if="${addNewSuccess}"
+                     th:uText="${addNewSuccess}"></div>
+                <div class="control-group">
+                  <label class="control-label">Subject Name :</label>
+                  <div class="controls">
+                    <input class="span11" name="subjectName" placeholder="Subject Name"
+                           type="text"/>
                   </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">Status</label>
-                <div class="controls">
-                  <select name="status">
-                    <option>Active</option>
-                    <option>Inactive</option>
-                  </select>
+                <div class="control-group">
+                  <label class="control-label">Category</label>
+                  <div class="controls">
+                    <select id="category" name="category">
+                      <option th:value="'Combo Box'" th:text="'Combo Box'"></option>
+                      <option th:value="'Second option'" th:text="'Second option'"></option>
+                      <option th:value="'Third option'" th:text="'Third option'"></option>
+                      <option th:value="'Fourth option'" th:text="'Fourth option'"></option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label">Description field:</label>
-                <div class="controls">
-                  <input class="span11" name="description" type="text"/>
-                  <span class="help-block">Description field</span></div>
-              </div>
-              <div class="form-actions">
-                <button class="btn btn-success" type="submit">Save</button>
-                <span class="pull-right"><a class="flip-link btn btn-inverse" href="#"
-                                            id="cancel-new-subject">Cancel</a></span>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="container-fluid">
-        <div class="row-fluid">
-          <div class="span12">
-            <div class="widget-box">
-              <div class="widget-title">
-                <span class="icon"><i class="icon-th"></i></span>
-                <h5>Data table</h5>
-              </div>
-              <div class="widget-content nopadding">
-                <table class="table table-bordered data-table">
-                  <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Package</th>
-                    <th>Duration</th>
-                    <th>List Price</th>
-                    <th>Sale Price</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr th:each="subject : ${subjects}" class="gradeX">
-                    <td th:text="${subject.getId()}">Id</td>
-                    <td th:text="${subject.getName()}">Name</td>
-                    <td th:text="${subject.getDuration()}">Duration</td>
-                    <td th:text="${subject.getPrice()}">List Price</td>
-                    <td th:text="${subject.getSalePrice()}">Sale Price</td>
-                    <td th:text="${subject.getStatus()}">Status</td>
-                    <td>Sample</td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <div>
+                      <input name="featured" type="checkbox"/>
+                      Featured Subject
+                    </div>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Status</label>
+                  <div class="controls">
+                    <select name="status">
+                      <option>Active</option>
+                      <option>Inactive</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Description field:</label>
+                  <div class="controls">
+                    <input class="span11" name="description" type="text"/>
+                    <span class="help-block">Description field</span></div>
+                </div>
+                <div class="form-actions">
+                  <button class="btn btn-success" type="submit">Save</button>
+                  <span class="pull-right"><a class="flip-link btn btn-inverse" href="#"
+                                              id="cancel-new-subject">Cancel</a></span>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -215,11 +86,7 @@
     </div>
   </div>
 </div>
-<div class="row-fluid">
-  <div class="span12" id="footer"> 2012 &copy; Marutii Admin. Brought to you by <a
-      href="http://themedesigner.in">Themedesigner.in</a>
-  </div>
-</div>
+<div th:replace="fragment :: footer"></div>
 <script th:src="@{js/jquery.min.js}"></script>
 <script th:src="@{js/jquery.ui.custom.js}"></script>
 <script th:src="@{js/bootstrap.min.js}"></script>
@@ -231,5 +98,8 @@
 <script th:src="@{js/jquery.dataTables.min.js}"></script>
 <script th:src="@{js/maruti.form_common.js}"></script>
 <script th:src="@{js/maruti.tables.js}"></script>
+<script th:src="@{/js/jquery-slim.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>

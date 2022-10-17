@@ -4,6 +4,7 @@ import com.quizz.app.dto.UserDto;
 import com.quizz.app.entity.User;
 import com.quizz.app.request.ResetPasswordRequest;
 import com.quizz.app.service.IUserService;
+import com.quizz.app.util.WebPageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,7 @@ public class SignUpController {
 
   @GetMapping
   public String getSignUpPage() {
-    return "signup";
+    return WebPageUtils.SIGN_UP_PAGE;
   }
 
   @PostMapping
@@ -46,12 +47,12 @@ public class SignUpController {
 
     if (signupError == null) {
       model.addAttribute("signupSuccess", true);
-      return "redirect:/login/successfulSignup";
+      return WebPageUtils.REDIRECT_TO_GET_LOGIN_SUCCESS_SIGN_UP;
     }
 
     model.addAttribute("signupError", signupError);
     model.addAttribute("isResetPassword", false);
-    return "signup";
+    return WebPageUtils.SIGN_UP_PAGE;
   }
 
   @PostMapping("/password")
@@ -76,10 +77,10 @@ public class SignUpController {
 
     model.addAttribute("isResetPassword", false);
     if (signupError == null) {
-      return "redirect:/login/successfulResetPassword";
+      return WebPageUtils.REDIRECT_TO_GET_LOGIN_SUCCESS_RESET_PASSWORD;
     } else {
       model.addAttribute("signupError", signupError);
     }
-    return "signup";
+    return WebPageUtils.SIGN_UP_PAGE;
   }
 }

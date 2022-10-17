@@ -1,8 +1,9 @@
 package com.quizz.app.mapper;
 
 import com.quizz.app.entity.Subject;
-import com.quizz.app.request.AddSubjectRequest;
+import com.quizz.app.request.SubjectDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -10,5 +11,6 @@ public interface SubjectMapper {
 
   SubjectMapper INSTANCE = Mappers.getMapper(SubjectMapper.class);
 
-  Subject toEntity(AddSubjectRequest request);
+  @Mapping(source = "subjectName", target = "name")
+  Subject toEntity(SubjectDto request);
 }

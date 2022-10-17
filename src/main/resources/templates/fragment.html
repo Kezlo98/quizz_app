@@ -1,0 +1,73 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="Lib_Fragment">
+  <title>Quizz Application</title>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}">
+  <link th:href="@{/css/colorpicker.css}" rel="stylesheet"/>
+  <link th:href="@{/css/datepicker.css}" rel="stylesheet"/>
+  <link th:href="@{/css/uniform.css}" rel="stylesheet"/>
+  <link th:href="@{/css/select2.css}" rel="stylesheet"/>
+  <link rel="stylesheet" th:href="@{/css/login.css}"/>
+  <link rel="stylesheet" th:href="@{/css/signup.css}"/>
+  <link rel="stylesheet" th:href="@{/css/fullcalendar.css}">
+  <link rel="stylesheet" th:href="@{/css/maruti-style.css}">
+  <link class="skin-color" rel="stylesheet" th:href="@{/css/maruti-media.css}">
+</head>
+
+<!--Header-part-->
+<div th:fragment="header" id="header">
+  <h1><a href="/">Quizz Application</a></h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div th:fragment="menu" class="navbar navbar-inverse" id="user-nav">
+  <ul class="nav" style="width: auto; margin: 0px;">
+    <li class=""><a href="/user" title=""><i class="icon icon-user"></i> <span
+        class="text">Profile</span></a></li>
+    <li class="">
+      <form action="#" method="POST" th:action="@{/logout}">
+        <button class="button" style="background-color: gray">
+          <i class="icon icon-share-alt"></i>
+          <span class="text">Logout</span>
+        </button>
+      </form>
+    </li>
+  </ul>
+</div>
+
+<div th:fragment="sidebar" id="sidebar"><a class="visible-phone" href="#"><i class="icon icon-home"></i> Dashboard</a>
+  <ul style="display: block;">
+    <li class="active"><a href="/"><i class="icon icon-home"></i>
+      <span>Dashboard</span></a></li>
+    <li class="submenu"><a href="/subject"><i class="icon icon-th-list"></i> <span>Subject</span></a>
+      <ul>
+        <li><a href="/subject">All Subjects</a></li>
+        <li th:if="${roles.contains('ADMIN')}"><a href="/subject/new">New Subject</a></li>
+      </ul>
+    </li>
+    <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a>
+    </li>
+    <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
+    <li class="submenu"><a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span
+        class="label label-important">4</span></a>
+      <ul>
+        <li><a href="index2.html">Dashboard2</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="calendar.html">Calendar</a></li>
+        <li><a href="chat.html">Chat option</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div th:fragment="footer" class="row-fluid">
+  <div class="span12" id="footer"> 2012 &copy; Marutii Admin. Brought to you by <a
+      href="http://themedesigner.in">Themedesigner.in</a>
+  </div>
+</div>

@@ -1,0 +1,149 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragment :: Lib_Fragment"></head>
+<body>
+
+<div th:replace="fragment :: header"></div>
+<div th:replace="fragment :: menu"></div>
+<div th:replace="fragment :: sidebar"></div>
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"><a class="tip-bottom" href="index.html" title="Go to Home"><i
+        class="icon-home"></i>
+      Home</a> <a class="tip-bottom" href="#">Form elements</a> <a class="current" href="#">Common
+      elements</a>
+    </div>
+    <h1>Subject Details</h1>
+  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>New Subject</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <form action="#" class="form-horizontal" method="POST" th:action="@{/subject}">
+              <input type="hidden" name="id"
+                     th:value="${subject.getId()}">
+              <div class="alert alert-dark" id="success-msg" th:if="${addNewFail}"
+                   th:uText="${addNewFail}"></div>
+              <div class="alert alert-danger" id="error-login" th:if="${addNewSuccess}"
+                   th:uText="${addNewSuccess}"></div>
+              <div class="control-group">
+                <label class="control-label">Subject Name :</label>
+                <div class="controls">
+                  <input class="span11" name="subjectName" placeholder="Subject Name" type="text"
+                         th:uText="${subject.getName()}"/>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Category</label>
+                <div class="controls">
+                  <select id="category" name="category">
+                    <option th:value="'Combo Box'" th:text="'Combo Box'"
+                            th:selected="${subject.getCategory() == 'Combo Box'}"></option>
+                    <option th:value="'Second option'" th:text="'Second option'"
+                            th:selected="${subject.getCategory() == 'Second option'}"></option>
+                    <option th:value="'Third option'" th:text="'Third option'"
+                            th:selected="${subject.getCategory() == 'Third option'}"></option>
+                    <option th:value="'Fourth option'" th:text="'Fourth option'"
+                            th:selected="${subject.getCategory() == 'Third option'}"></option>
+                  </select>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Status</label>
+                  <div class="controls">
+                    <select id="status" name="status">
+                      <option th:value="'Active'" th:text="'Active'" th:selected="${subject.getStatus == 'Active'}"></option>
+                      <option th:value="'Inactive'" th:text="'Inactive'" th:selected="${subject.getStatus == 'Inactive'}">Inactive</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Description field:</label>
+                  <div class="controls">
+                    <input class="span11" name="description" type="text"
+                           th:uText="${subject.getDescription()}"/>
+                    <span class="help-block">Description field</span></div>
+                </div>
+                <div class="form-actions">
+                  <button class="btn btn-success" type="submit">Update</button>
+                  <span class="pull-right"><a class="flip-link btn btn-inverse" href="#"
+                                              id="cancel-new-subject">Cancel</a></span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="widget-box">
+              <div class="widget-title">
+                <span class="icon"><i class="icon-th"></i></span>
+                <h5>Data table</h5>
+              </div>
+              <div class="widget-content nopadding">
+                <table class="table table-bordered data-table">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Package</th>
+                    <th>Duration</th>
+                    <th>List Price</th>
+                    <th>Sale Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="subject : ${subjects}" class="gradeX">
+                    <form action="#" class="form-horizontal" method="POST"
+                          th:action="@{/subject/status}">
+                      <input type="hidden" name="subjectId"
+                             th:value="${subject.getId()}">
+                      <td th:text="${subject.getId()}">Id</td>
+                      <td th:text="${subject.getName()}">Name</td>
+                      <td th:text="${subject.getDuration()}">Duration</td>
+                      <td th:text="${subject.getPrice()}">List Price</td>
+                      <td th:text="${subject.getSalePrice()}">Sale Price</td>
+                      <td th:text="${subject.getStatus()}">Status</td>
+                      <td>
+                        <button type="submit" th:if="${subject.getStatus() == 'Active'}">
+                          Deactivate
+                        </button>
+                        <button type="submit" th:if="${subject.getStatus() == 'Inactive'}">
+                          Activate
+                        </button>
+                      </td>
+                    </form>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="fragment :: footer"></div>
+<script th:src="@{js/jquery.min.js}"></script>
+<script th:src="@{js/jquery.ui.custom.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script th:src="@{js/bootstrap-colorpicker.js}"></script>
+<script th:src="@{js/bootstrap-datepicker.js}"></script>
+<script th:src="@{js/jquery.uniform.js}"></script>
+<script th:src="@{js/select2.min.js}"></script>
+<script th:src="@{js/maruti.js}"></script>
+<script th:src="@{js/jquery.dataTables.min.js}"></script>
+<script th:src="@{js/maruti.form_common.js}"></script>
+<script th:src="@{js/maruti.tables.js}"></script>
+</body>
+</html>

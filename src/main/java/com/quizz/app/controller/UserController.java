@@ -4,6 +4,7 @@ import com.quizz.app.dto.UserDto;
 import com.quizz.app.entity.User;
 import com.quizz.app.request.PasswordUpdateRequest;
 import com.quizz.app.service.IUserService;
+import com.quizz.app.util.WebPageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class UserController {
       model.addAttribute("user", user);
     }
 
-    return "userprofile";
+    return WebPageUtils.USER_PAGE;
   }
 
   @PostMapping
@@ -45,7 +46,7 @@ public class UserController {
     }
     model.addAttribute("updateProfileSuccess", true);
 
-    return "userprofile";
+    return WebPageUtils.USER_PAGE;
   }
 
   @PostMapping("/password")
@@ -60,7 +61,7 @@ public class UserController {
       redirectAttributes.addFlashAttribute("passwordChangeError", error);
     }
 
-    return "redirect:/user";
+    return WebPageUtils.REDIRECT_TO_GET_USER;
 
   }
 

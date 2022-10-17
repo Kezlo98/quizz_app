@@ -1,6 +1,5 @@
 package com.quizz.app.entity;
 
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,7 +8,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.Hibernate;
 
 @Getter
 @Setter
@@ -21,7 +19,7 @@ public class Subject {
 
   @Id
   @Column(name = "subject_id")
-  private Integer id;
+  private int id;
 
   @Column(name = "subject_name")
   private String name;
@@ -46,21 +44,4 @@ public class Subject {
 
   @Column(name = "status")
   private String status;
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
-      return false;
-    }
-    Subject subject = (Subject) o;
-    return id != null && Objects.equals(id, subject.id);
-  }
-
-  @Override
-  public int hashCode() {
-    return getClass().hashCode();
-  }
 }

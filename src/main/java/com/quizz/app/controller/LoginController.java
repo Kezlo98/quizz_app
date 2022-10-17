@@ -1,5 +1,6 @@
 package com.quizz.app.controller;
 
+import com.quizz.app.util.WebPageUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,7 @@ public class LoginController {
 
   @GetMapping
   public String getLoginPage() {
-    return "login";
+    return WebPageUtils.LOGIN_PAGE;
   }
 
   @GetMapping("/successfulSignup")
@@ -19,7 +20,7 @@ public class LoginController {
 
     redirectAttributes.addFlashAttribute("signupSuccess", true);
 
-    return "redirect:/login";
+    return WebPageUtils.REDIRECT_TO_GET_LOGIN;
   }
 
   @GetMapping("/successfulResetPassword")
@@ -27,6 +28,6 @@ public class LoginController {
 
     redirectAttributes.addFlashAttribute("resetSuccess", true);
 
-    return "redirect:/login";
+    return WebPageUtils.REDIRECT_TO_GET_LOGIN;
   }
 }

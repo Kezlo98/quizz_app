@@ -1,5 +1,6 @@
 package com.quizz.app.controller;
 
+import com.quizz.app.util.WebPageUtils;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.ui.Model;
@@ -20,6 +21,6 @@ public class ControllerAdvice {
       errors.put(fieldName, errorMessage);
     });
     model.addAttribute("error", errors);
-    return "error";
+    return WebPageUtils.ERROR_PAGE;
   }
 }

@@ -1,0 +1,87 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragment :: Lib_Fragment"></head>
+<body>
+
+<div th:replace="fragment :: header"></div>
+<div th:replace="fragment :: menu"></div>
+<div th:replace="fragment :: sidebar"></div>
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"><a class="tip-bottom" href="index.html" title="Go to Home"><i
+        class="icon-home"></i>
+      Home</a> <a class="tip-bottom" href="#">Form elements</a> <a class="current" href="#">Common
+      elements</a>
+    </div>
+    <h1>All Subjects</h1>
+  </div>
+  <div>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title">
+            <span class="icon"><i class="icon-th"></i></span>
+            <h5>Data table</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Package</th>
+                <th>Duration</th>
+                <th>List Price</th>
+                <th>Sale Price</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="subject : ${subjects}" class="gradeX">
+                <form action="#" class="form-horizontal" method="POST"
+                      th:action="@{/subject/status}">
+                  <input type="hidden" name="subjectId"
+                         th:value="${subject.getId()}">
+                  <td th:text="${subject.getId()}">Id</td>
+                  <td th:text="${subject.getName()}">Name</td>
+                  <td th:text="${subject.getDuration()}">Duration</td>
+                  <td th:text="${subject.getPrice()}">List Price</td>
+                  <td th:text="${subject.getSalePrice()}">Sale Price</td>
+                  <td th:text="${subject.getStatus()}">Status</td>
+                  <td>
+                    <button type="submit" th:if="${subject.getStatus() == 'Active'}">
+                      Deactivate
+                    </button>
+                    <button type="submit" th:if="${subject.getStatus() == 'Inactive'}">
+                      Activate
+                    </button>
+                  </td>
+                </form>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="fragment :: footer"></div>
+<script th:src="@{js/jquery.min.js}"></script>
+<script th:src="@{js/jquery.ui.custom.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script th:src="@{js/bootstrap-colorpicker.js}"></script>
+<script th:src="@{js/bootstrap-datepicker.js}"></script>
+<script th:src="@{js/jquery.uniform.js}"></script>
+<script th:src="@{js/select2.min.js}"></script>
+<script th:src="@{js/maruti.js}"></script>
+<script th:src="@{js/jquery.dataTables.min.js}"></script>
+<script th:src="@{js/maruti.form_common.js}"></script>
+<script th:src="@{js/maruti.tables.js}"></script>
+<script th:src="@{/js/jquery-slim.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
